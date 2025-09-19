@@ -54,10 +54,10 @@ export default function ChatWindow() {
       <header className="flex items-center justify-between border-b px-4 py-3">
         <h1 className="text-lg font-semibold">New chat</h1>
       </header>
-      <div ref={listRef} className="h-[58vh] sm:h-[60vh] overflow-y-auto px-4 py-4 space-y-4 bg-gradient-to-b from-background to-muted/30">
+      <div ref={listRef} className="h-[58vh] sm:h-[60vh] overflow-y-auto px-4 py-4 space-y-4 bg-background">
         {messages.map((m) => (
-          <div key={m.id} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}> 
-            <div className={cn("max-w-[85%] rounded-xl px-3 py-2 text-sm shadow-sm", m.role === "user" ? "bg-primary text-primary-foreground rounded-br-sm" : "bg-secondary text-secondary-foreground rounded-bl-sm")}> 
+          <div key={m.id} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
+            <div className={cn("max-w-[85%] rounded-xl px-3 py-2 text-sm shadow-sm", m.role === "user" ? "bg-primary text-primary-foreground rounded-br-sm" : "bg-primary/10 text-foreground rounded-bl-sm")}>
               <p>{m.text}</p>
               {m.time && (
                 <p className="mt-1 text-[10px] opacity-70">{m.time}</p>
@@ -67,12 +67,12 @@ export default function ChatWindow() {
         ))}
       </div>
       <form onSubmit={onSubmit} className="border-t p-3">
-        <div className="relative">
+        <div className="relative rounded-md border bg-card shadow-sm">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your query here"
-            className="min-h-[92px] w-full resize-none rounded-md border bg-background px-3 py-2 text-sm shadow-sm outline-none focus:ring-2 focus:ring-ring"
+            className="min-h-[92px] w-full resize-none rounded-md bg-transparent px-3 py-2 text-sm outline-none focus-visible:ring-0"
           />
           <div className="absolute bottom-3 right-3 flex items-center gap-2">
             <Button type="submit" className="shadow" aria-label="Submit">
