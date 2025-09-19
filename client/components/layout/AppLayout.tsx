@@ -1,12 +1,25 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { Menu, Plus, MessageSquare, History, Clock, MessageCircle, LogOut } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 export default function AppLayout() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+
+  const currentLabel = useMemo(() => {
+    if (location.pathname === "/history") return "Interaction history";
+    return "New chat";
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -31,19 +44,36 @@ export default function AppLayout() {
         </div>
       </header>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 md:grid-cols-[260px_1fr] gap-6 px-4 py-6">
-        <aside className={cn("border bg-card rounded-lg md:sticky md:top-20 h-fit", open ? "block" : "hidden md:block")}> 
+      {/* Breadcrumbs below header */}
+      <div className="mx-auto max-w-7xl px-4 pt-3">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/">Contact Service</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{currentLabel}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+
+      <div className="mx-auto grid max-w-7xl grid-cols-1 md:grid-cols-[260px_1fr] gap-6 px-4 py-4">
+        <aside className={cn("border bg-card rounded-lg md:sticky md:top-24 h-fit", open ? "block" : "hidden md:block")}>
           <nav className="p-3">
             <p className="px-2 pb-2 text-xs font-medium text-muted-foreground uppercase">Dashboard</p>
             <ul className="space-y-1">
               <li>
-                <button className={cn("w-full flex items-center gap-2 rounded-md px-2 py-2 text-left hover:bg-accent", location.pathname === "/" && "bg-accent")}> 
+                <button className={cn("w-full flex items-center gap-2 rounded-md px-2 py-2 text-left hover:bg-accent", location.pathname === "/" && "bg-accent")}>
                   <MessageSquare className="h-4 w-4" />
                   <span>New chat</span>
                 </button>
               </li>
               <li>
-                <Link to="/history" className={cn("flex items-center gap-2 rounded-md px-2 py-2 hover:bg-accent", location.pathname === "/history" && "bg-accent")}> 
+                <Link to="/history" className={cn("flex items-center gap-2 rounded-md px-2 py-2 hover:bg-accent", location.pathname === "/history" && "bg-accent")}>
                   <History className="h-4 w-4" />
                   <span>Interaction history</span>
                 </Link>
