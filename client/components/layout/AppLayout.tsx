@@ -9,7 +9,7 @@ export default function AppLayout() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(1000px_600px_at_10%_-20%,hsl(var(--accent)/0.6),transparent),radial-gradient(800px_400px_at_90%_20%,hsl(var(--accent)/0.5),transparent)]">
+    <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-30 w-full border-b bg-background/80 backdrop-blur">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
