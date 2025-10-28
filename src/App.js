@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AppLayout from './components/layout/AppLayout';
-import Index from './pages/Index';
-import History from './pages/History';
-import NotFound from './pages/NotFound';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AppLayout from "./components/layout/AppLayout";
+import Index from "./pages/Index";
+import History from "./pages/History";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (

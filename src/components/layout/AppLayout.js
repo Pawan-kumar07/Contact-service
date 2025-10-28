@@ -1,15 +1,15 @@
-import React from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
-import styles from './AppLayout.module.css';
+import React from "react";
+import { Outlet, Link, useLocation } from "react-router-dom";
+import styles from "./AppLayout.module.css";
 
 const AppLayout = () => {
   const location = useLocation();
 
   const menuItems = [
-    { label: 'Interaction history', path: '/history' },
-    { label: 'Chat history', path: '/chat-history' },
-    { label: 'Scheduled calls', path: '/scheduled' },
-    { label: 'Give user feedback', path: '/feedback' },
+    { label: "Interaction history", path: "/history" },
+    { label: "Chat history", path: "/chat-history" },
+    { label: "Scheduled calls", path: "/scheduled" },
+    { label: "Give user feedback", path: "/feedback" },
   ];
 
   return (
@@ -38,7 +38,7 @@ const AppLayout = () => {
                 key={item.path}
                 to={item.path}
                 className={`${styles.navLink} ${
-                  location.pathname === item.path ? styles.active : ''
+                  location.pathname === item.path ? styles.active : ""
                 }`}
               >
                 {item.label}

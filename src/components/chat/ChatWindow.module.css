@@ -75,7 +75,7 @@
   padding: 12px;
   border: none;
   background: transparent;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   color: var(--text-primary);
   resize: none;
@@ -106,11 +106,11 @@
 }
 
 .submitBtn:hover {
-  background-color: #3A4FD1;
+  background-color: #3a4fd1;
 }
 
 .submitBtn:active {
-  background-color: #2A3FD1;
+  background-color: #2a3fd1;
 }
 
 .submitIcon {

@@ -5,16 +5,19 @@ A modern contact service application built with Create React App, React Router, 
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 14+ and npm (or yarn/pnpm)
 
 ### Installation
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Start the development server:
+
 ```bash
 npm start
 ```
@@ -65,6 +68,7 @@ public/
 ## Styling
 
 The app uses:
+
 - CSS Modules for component-scoped styles
 - CSS variables for theming (defined in `src/index.css`)
 - No external UI frameworks (pure HTML/CSS)
@@ -72,11 +76,8 @@ The app uses:
 ### CSS Variables
 
 ```css
---primary: #4A5FDB
---primary-light: #F0F3FF
---text-primary: #1F2937
---text-secondary: #6B7280
---border: #E5E7EB
+--primary: #4a5fdb --primary-light: #f0f3ff --text-primary: #1f2937
+  --text-secondary: #6b7280 --border: #e5e7eb;
 ```
 
 ## API Integration
