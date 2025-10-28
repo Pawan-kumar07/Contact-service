@@ -7,7 +7,6 @@ export default function AppLayout() {
   const location = useLocation();
 
   const menuItems = [
-    { label: "New chat", path: "/", icon: MessageSquare },
     { label: "Interaction history", path: "/history", icon: History },
     { label: "Chat history", path: "/chat-history", icon: MessageCircle },
     { label: "Scheduled calls", path: "/scheduled", icon: Clock },
