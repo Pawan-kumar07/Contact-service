@@ -36,7 +36,25 @@ export default function AppLayout() {
 
           {/* Horizontal Navigation */}
           <nav className="flex items-center gap-6 overflow-x-auto">
-            {menuItems.map((item) => {
+            {/* New chat button on left */}
+            <Link
+              to="/"
+              className={cn(
+                "flex items-center gap-2 px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors border-b-2 -mb-4 pb-4",
+                location.pathname === "/"
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
+              )}
+            >
+              <MessageSquare className="h-4 w-4" />
+              <span>New chat</span>
+            </Link>
+
+            {/* Spacer to push remaining items to right */}
+            <div className="flex-1" />
+
+            {/* Remaining menu items on right */}
+            {menuItems.slice(1).map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
               return (
