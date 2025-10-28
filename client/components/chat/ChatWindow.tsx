@@ -51,10 +51,7 @@ export default function ChatWindow() {
 
   return (
     <section className="rounded-lg border bg-card shadow-sm">
-      <header className="flex items-center justify-between border-b px-4 py-3">
-        <h1 className="text-lg font-semibold">New chat</h1>
-      </header>
-      <div ref={listRef} className="h-[58vh] sm:h-[60vh] overflow-y-auto px-4 py-4 space-y-4 bg-background">
+      <div ref={listRef} className="h-[60vh] sm:h-[65vh] overflow-y-auto px-4 py-4 space-y-4 bg-background">
         {messages.map((m) => (
           <div key={m.id} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
             <div className={cn("max-w-[85%] rounded-xl px-3 py-2 text-sm shadow-sm", m.role === "user" ? "bg-primary text-primary-foreground rounded-br-sm" : "bg-primary/10 text-foreground rounded-bl-sm")}>
