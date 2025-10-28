@@ -1,108 +1,68 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Menu, Plus, MessageSquare, History, Clock, MessageCircle, LogOut } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Plus, MessageSquare, History, Clock, MessageCircle, HelpCircle, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 
 export default function AppLayout() {
-  const [open, setOpen] = useState(false);
   const location = useLocation();
 
-  const currentLabel = useMemo(() => {
-    if (location.pathname === "/history") return "Interaction history";
-    return "New chat";
-  }, [location.pathname]);
+  const menuItems = [
+    { label: "New chat", path: "/", icon: MessageSquare },
+    { label: "Interaction history", path: "/history", icon: History },
+    { label: "Chat history", path: "/chat-history", icon: MessageCircle },
+    { label: "Scheduled calls", path: "/scheduled", icon: Clock },
+    { label: "Give user feedback", path: "/feedback", icon: HelpCircle },
+  ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Header */}
       <header className="sticky top-0 z-30 w-full border-b bg-background/80 backdrop-blur">
-        <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button aria-label="Toggle menu" className="md:hidden -ml-1 p-2 rounded-md hover:bg-accent" onClick={() => setOpen((s) => !s)}>
-              <Menu className="h-5 w-5" />
-            </button>
-            <Link to="/" className="inline-flex items-center gap-2 font-semibold tracking-tight text-xl">
-              <span className="inline-block rounded-md bg-primary/10 px-2 py-1 text-primary">CS</span>
-              <span>Contact Service</span>
-            </Link>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button asChild size="sm" className="hidden sm:inline-flex">
+        <div className="mx-auto w-full px-6 py-4">
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <Button asChild size="sm" variant="outline">
               <Link to="/">
                 <Plus className="h-4 w-4" /> New chat
               </Link>
             </Button>
+            <h1 className="text-2xl font-bold text-center flex-1">Contact Service</h1>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">Repair Pavani</span>
+              <button className="text-muted-foreground hover:text-foreground">
+                <LogOut className="h-4 w-4" />
+              </button>
+            </div>
           </div>
+
+          {/* Horizontal Navigation */}
+          <nav className="flex items-center gap-6 overflow-x-auto">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={cn(
+                    "flex items-center gap-2 px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors border-b-2 -mb-4 pb-4",
+                    isActive
+                      ? "border-primary text-primary"
+                      : "border-transparent text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{item.label}</span>
+                </Link>
+              );
+            })}
+          </nav>
         </div>
       </header>
 
-      {/* Breadcrumbs below header */}
-      <div className="mx-auto max-w-7xl px-4 pt-3">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link to="/">Contact Service</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{currentLabel}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
-
-      <div className="mx-auto grid max-w-7xl grid-cols-1 md:grid-cols-[260px_1fr] gap-6 px-4 py-4">
-        <aside className={cn("border bg-card rounded-lg md:sticky md:top-24 h-fit", open ? "block" : "hidden md:block")}>
-          <nav className="p-3">
-            <p className="px-2 pb-2 text-xs font-medium text-muted-foreground uppercase">Dashboard</p>
-            <ul className="space-y-1">
-              <li>
-                <button className={cn("w-full flex items-center gap-2 rounded-md px-2 py-2 text-left hover:bg-accent", location.pathname === "/" && "bg-accent")}>
-                  <MessageSquare className="h-4 w-4" />
-                  <span>New chat</span>
-                </button>
-              </li>
-              <li>
-                <Link to="/history" className={cn("flex items-center gap-2 rounded-md px-2 py-2 hover:bg-accent", location.pathname === "/history" && "bg-accent")}>
-                  <History className="h-4 w-4" />
-                  <span>Interaction history</span>
-                </Link>
-              </li>
-              <li>
-                <button className="w-full flex items-center gap-2 rounded-md px-2 py-2 text-left hover:bg-accent" disabled>
-                  <Clock className="h-4 w-4" />
-                  <span>Scheduled calls</span>
-                </button>
-              </li>
-              <li>
-                <button className="w-full flex items-center gap-2 rounded-md px-2 py-2 text-left hover:bg-accent" disabled>
-                  <MessageCircle className="h-4 w-4" />
-                  <span>Chat history</span>
-                </button>
-              </li>
-            </ul>
-            <div className="mt-6 border-t pt-3">
-              <button className="w-full flex items-center gap-2 rounded-md px-2 py-2 text-left hover:bg-accent">
-                <LogOut className="h-4 w-4" />
-                <span>Logout</span>
-              </button>
-            </div>
-          </nav>
-        </aside>
-        <main>
-          <Outlet />
-        </main>
-      </div>
+      {/* Main Content */}
+      <main className="flex-1 mx-auto w-full max-w-7xl px-6 py-6">
+        <Outlet />
+      </main>
     </div>
   );
 }
