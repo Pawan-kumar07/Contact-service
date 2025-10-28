@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { Plus, MessageSquare, History, Clock, MessageCircle, HelpCircle, LogOut } from "lucide-react";
+import { Plus, History, Clock, MessageCircle, HelpCircle, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
