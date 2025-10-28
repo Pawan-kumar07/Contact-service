@@ -1,0 +1,39 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+  padding: 20px;
+}
+
+.content {
+  text-align: center;
+}
+
+.code {
+  font-size: 72px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: var(--text-primary);
+}
+
+.message {
+  font-size: 20px;
+  margin: 0 0 24px 0;
+  color: var(--text-secondary);
+}
+
+.link {
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 2px solid var(--primary);
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.link:hover {
+  border-bottom-color: transparent;
+}
