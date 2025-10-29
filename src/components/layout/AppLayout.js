@@ -18,9 +18,6 @@ const AppLayout = () => {
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <div className={styles.headerTop}>
-            <Link to="/" className={styles.newChatBtn}>
-              <span>+</span> New chat
-            </Link>
             <h1 className={styles.title}>Contact Service</h1>
             <div className={styles.userArea}>
               <span>Repair Pavani</span>
@@ -32,6 +29,9 @@ const AppLayout = () => {
 
           {/* Navigation */}
           <nav className={styles.nav}>
+            <Link to="/" className={styles.newChatBtn}>
+              <span>+</span> New chat
+            </Link>
             <div className={styles.navSpacer} />
             {menuItems.map((item) => (
               <Link
