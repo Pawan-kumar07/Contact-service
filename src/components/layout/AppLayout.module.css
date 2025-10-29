@@ -46,6 +46,8 @@
   gap: 12px;
   font-size: 14px;
   color: var(--text-secondary);
+  position: absolute;
+  right: 24px;
 }
 
 .logoutBtn {
